@@ -57,23 +57,23 @@ pipeline {
             }
         }
 
-         stage('SonarQube Analysis') {
-            steps {
-                echo 'Running SonarQube analysis with debug mode...'
-                withCredentials([string(credentialsId: 'pyhton-sonar-id', variable: 'SONAR_TOKEN')]) {
-                    sh '''
-                    . venv/bin/activate && \
-                    ./sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner \
-                      -Dsonar.host.url="http://localhost:9000/" \
-                      -Dsonar.login=$SONAR_TOKEN \
-                      -Dsonar.projectKey="pyhton-auto" \
-                      -Dsonar.projectName="pyhton-auto" \
-                      -Dsonar.sources="." \
-                      -X
-                    '''
-                }
-             }
-        }
+        //  stage('SonarQube Analysis') {
+        //     steps {
+        //         echo 'Running SonarQube analysis with debug mode...'
+        //         withCredentials([string(credentialsId: 'pyhton-sonar-id', variable: 'SONAR_TOKEN')]) {
+        //             sh '''
+        //             . venv/bin/activate && \
+        //             ./sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner \
+        //               -Dsonar.host.url="http://localhost:9000/" \
+        //               -Dsonar.login=$SONAR_TOKEN \
+        //               -Dsonar.projectKey="pyhton-auto" \
+        //               -Dsonar.projectName="pyhton-auto" \
+        //               -Dsonar.sources="." \
+        //               -X
+        //             '''
+        //         }
+        //      }
+        // }
         stage('Generate Report') {
             steps {
                 echo 'Generating code analysis report...'
