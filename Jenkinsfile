@@ -90,7 +90,7 @@ pipeline {
                     sh 'git config user.email "jaypals840@gmail.com"'
                     sh 'git add .'
                     sh 'git commit -m "First "'
-                    sh 'git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/Python_demo_auto.git ${BRANCH}'
+                    sh 'git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH}'
                 }
             }
         }
