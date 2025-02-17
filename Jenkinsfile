@@ -28,9 +28,7 @@ pipeline {
                     python3 -m venv venv
                     . venv/bin/activate && pip install --upgrade pip
                     pip install --cache-dir .pip-cache flake8 black autopep8 pylint matplotlib pandas
-                    // curl -o sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-                    // unzip -o sonar-scanner.zip
-                    // export PATH=$PATH:$(pwd)/sonar-scanner-5.0.1.3006-linux/bin
+                    
                 '''
             }
         }
