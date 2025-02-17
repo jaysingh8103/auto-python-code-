@@ -38,7 +38,7 @@ pipeline {
                 echo 'Running Flake8 and Pylint...'
                 sh '. venv/bin/activate && flake8 --exit-zero . > flake8-report.txt || true'
                 sh '. venv/bin/activate && pylint --output-format=colorized --fail-under=5 main.py || true'
-                // archiveArtifacts artifacts: 'flake8-report.txt'
+                
             }
         }
         stage('Code Optimization with autopep8 ') {
