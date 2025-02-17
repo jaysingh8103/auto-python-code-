@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REPO_URL = 'https://github.com/jaysingh8103/Python_demo_auto.git'
+        REPO_URL = 'https://github.com/jaysingh8103/auto-python-code-.git'
         BRANCH = 'main'
         GITHUB_USER ='jaysingh8103'
         GITHUB_PASSWORD  = 'ITengineer12'
