@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     environment {
-        REPO_URL = ''
-        BRANCH = ''
-        GITHUB_USER =''
-        GITHUB_PASSWORD  = ''
-        SONARQUBE_PASSWORD = ''
-        SONARQUBE_USER = ''
+        REPO_URL = 'https://github.com/jaysingh8103/Python_demo_auto.git'
+        BRANCH = 'main'
+        GITHUB_USER ='jaysingh8103'
+        GITHUB_PASSWORD  = 'ITengineer12'
+        SONARQUBE_PASSWORD = 'jay8'
+        SONARQUBE_USER = 'admin'
         
     }
 
