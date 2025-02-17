@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GITHUB_REPO = ''
+        GITHUB_REPO = 'https://github.com/jaysingh8103/auto-python-code-.git'
         GITHUB_CREDENTIALS_ID = 'github_credentials'
         BRANCH_NAME = 'main'
     }
