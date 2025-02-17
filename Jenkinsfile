@@ -15,11 +15,20 @@ pipeline {
             }
         }
 
+        stage('Set Up Virtual Environment') {
+            steps {
+                script {
+                    sh 'python3 -m venv venv'
+                    sh '. venv/bin/activate'
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'pip install --upgrade pip'
-                    sh 'pip install black autopep8 pylint flake8'
+                    sh '. venv/bin/activate && pip install --upgrade pip'
+                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8'
                 }
             }
         }
@@ -27,8 +36,8 @@ pipeline {
         stage('Optimize Code') {
             steps {
                 script {
-                    sh 'black .'
-                    sh 'autopep8 --in-place --recursive .'
+                    sh '. venv/bin/activate && black .'
+                    sh '. venv/bin/activate && autopep8 --in-place --recursive .'
                 }
             }
         }
@@ -36,10 +45,10 @@ pipeline {
         stage('Static Analysis and Linting') {
             steps {
                 script {
-                    def lintResults = sh(script: 'flake8 . --count --exit-zero --max-complexity=10 --statistics', returnStdout: true)
+                    def lintResults = sh(script: '. venv/bin/activate && flake8 . --count --exit-zero --max-complexity=10 --statistics', returnStdout: true)
                     echo "Linting results:\n${lintResults}"
 
-                    def pylintResults = sh(script: 'pylint $(find . -name "*.py") || true', returnStdout: true)
+                    def pylintResults = sh(script: '. venv/bin/activate && pylint $(find . -name "*.py") || true', returnStdout: true)
                     echo "Pylint results:\n${pylintResults}"
                 }
             }
@@ -69,3 +78,4 @@ pipeline {
         }
     }
 }
+
