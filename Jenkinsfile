@@ -13,7 +13,9 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git branch: env.BRANCH_NAME, url: env.GITHUB_REPO, credentialsId: env.GITHUB_CREDENTIALS_ID
+                script {
+                    sh 'git clone -b ${BRANCH_NAME} ${GITHUB_REPO}'
+                }
             }
         }
 
@@ -30,7 +32,7 @@ pipeline {
             steps {
                 script {
                     sh '. venv/bin/activate && pip install --upgrade pip'
-                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8'
+                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8 bandit'
                 }
             }
         }
@@ -52,6 +54,22 @@ pipeline {
 
                     def pylintResults = sh(script: '. venv/bin/activate && pylint $(find . -name "*.py") || true', returnStdout: true)
                     echo "Pylint results:\n${pylintResults}"
+                }
+            }
+        }
+
+        stage('Error Detection and Fixing') {
+            steps {
+                script {
+                    def banditResults = sh(script: '. venv/bin/activate && bandit -r . -f json', returnStdout: true)
+                    echo "Security analysis results:\n${banditResults}"
+
+                    def pyflakesResults = sh(script: '. venv/bin/activate && python3 -m pyflakes . || true', returnStdout: true)
+                    echo "Error detection results:\n${pyflakesResults}"
+
+                    // Auto-fix common issues
+                    sh '. venv/bin/activate && autopep8 --in-place --recursive .'
+                    sh '. venv/bin/activate && pylint --exit-zero $(find . -name "*.py")'
                 }
             }
         }
