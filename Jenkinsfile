@@ -61,8 +61,8 @@ pipeline {
                     git config --global user.email "jaypals840@gmail.com"
                     git config --global user.name "jaysingh8103"
                     git add .
-                    git commit -m "Auto-optimized Python code and fixed linting issues"
-                    git push https://${env.GITHUB_USERNAME}:${env.GITHUB_TOKEN}@github.com/jaysingh8103/auto-python-code-.git
+                    git commit -m "Auto-optimized Python code and fixed linting issues" || echo "No changes to commit"
+                    git push https://\$GITHUB_USERNAME:\$GITHUB_TOKEN@github.com/jaysingh8103/auto-python-code-.git
                     '''
                 }
             }
