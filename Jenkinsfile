@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     sh '. venv/bin/activate && pip install --upgrade pip'
-                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8 bandit'
+                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8 bandit pyflakes'
                 }
             }
         }
