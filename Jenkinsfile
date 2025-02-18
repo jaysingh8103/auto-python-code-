@@ -11,8 +11,9 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
+       stage('Clone Repository') {
             steps {
+                git branch: env.BRANCH_NAME, url: env.GITHUB_REPO, credentialsId: env.GITHUB_CREDENTIALS_ID
                 script {
                     sh 'git clone -b ${BRANCH_NAME} ${GITHUB_REPO}'
                 }
