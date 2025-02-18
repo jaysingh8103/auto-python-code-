@@ -5,6 +5,8 @@ pipeline {
         GITHUB_REPO = 'https://github.com/jaysingh8103/auto-python-code-.git'
         GITHUB_CREDENTIALS_ID = 'github_credentials'
         BRANCH_NAME = 'main'
+        GITHUB_USER ='jaysingh8103'
+        GITHUB_PASSWORD  = 'ITengineer12'
     }
 
     stages {
@@ -54,17 +56,15 @@ pipeline {
             }
         }
 
-        stage('Push Optimized Code to GitHub') {
+        stage('Replace Unoptimized Code') {
             steps {
-                script {
-                    sh '''
-                    git config --global user.email "jaypals840@gmail.com"
-                    git config --global user.name "jaysingh8103"
-                    git remote set-url origin https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/jaysingh8103/auto-python-code-.git
-                    git add .
-                    git commit -m "Auto-optimized Python code and fixed linting issues" || echo "No changes to commit"
-                    git push origin ${BRANCH_NAME}
-                    '''
+                echo 'Replacing unoptimized code with optimized code...'
+                withCredentials([usernamePassword(credentialsId: 'github_credentials', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASSWORD')]) {
+                    sh 'git config user.name "${GITHUB_USER}"'
+                    sh 'git config user.email "jaypals840@gmail.com"'
+                    sh 'git add .'
+                    sh 'git commit -m "First "'
+                    sh 'git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH}'
                 }
             }
         }
