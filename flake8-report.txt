@@ -1,4 +1,8 @@
-./main.py:11:20: W291 trailing whitespace
+./code1.py:11:1: E302 expected 2 blank lines, found 1
+./code1.py:17:1: E302 expected 2 blank lines, found 1
+./code1.py:23:1: E302 expected 2 blank lines, found 1
+./code1.py:31:1: E302 expected 2 blank lines, found 1
+./code1.py:39:1: E305 expected 2 blank lines after class or function definition, found 1
 ./venv/lib/python3.12/site-packages/astroid/__init__.py:1:80: E501 line too long (85 > 79 characters)
 ./venv/lib/python3.12/site-packages/astroid/__init__.py:3:80: E501 line too long (80 > 79 characters)
 ./venv/lib/python3.12/site-packages/astroid/__init__.py:38:1: F401 'astroid.nodes.node_classes' imported but unused

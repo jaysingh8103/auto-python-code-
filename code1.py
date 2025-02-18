@@ -1,5 +1,6 @@
 # Unoptimized code example
 
+
 def find_duplicates(nums):
     duplicates = []
     for i in range(len(nums)):
@@ -8,17 +9,20 @@ def find_duplicates(nums):
                 duplicates.append(nums[i])
     return duplicates
 
+
 def compute_factorial(n):
     result = 1
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         result *= i
     return result
+
 
 def sum_large_numbers(nums):
     total = 0
     for num in nums:
         total += num
     return total
+
 
 def get_first_n_fibonacci(n):
     fibonacci = []
@@ -28,12 +32,14 @@ def get_first_n_fibonacci(n):
         a, b = b, a + b
     return fibonacci
 
+
 def find_max_value(nums):
-    max_val = -float('inf')
+    max_val = -float("inf")
     for num in nums:
         if num > max_val:
             max_val = num
     return max_val
+
 
 # Calling the functions
 nums = [1, 2, 3, 4, 5, 2, 3, 6, 7, 8]
