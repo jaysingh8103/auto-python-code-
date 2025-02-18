@@ -8,7 +8,7 @@ def circle_area(radius):
     else:
         area = math.pi * radius**2
         print(f"Area is {area}")
-        return area  
+        return area
 
 
 circle_area(5)
