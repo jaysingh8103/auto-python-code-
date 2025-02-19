@@ -19,12 +19,20 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Set Up Virtual Environment') {
             steps {
                 script {
                     sh 'python3 -m venv venv'
                     sh '. venv/bin/activate'
+                }
+            }
+        }
+        stage('Archive Optimized Code') {
+            steps {
+                script{
+                    echo 'Archiving optimized code...'
+                    archiveArtifacts artifacts: 'main.py', fingerprint: true
                 }
             }
         }
