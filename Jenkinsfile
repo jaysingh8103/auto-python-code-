@@ -70,18 +70,23 @@ pipeline {
         stage('Error Detection and Fixing') {
             steps {
                 script {
-                    def banditResults = sh(script: '. venv/bin/activate && bandit -r . -f json', returnStdout: true)
+                    // Run Bandit for security analysis
+                    def banditResults = sh(script: 'venv/bin/python -m bandit -r . -f json', returnStdout: true)
                     echo "Security analysis results:\n${banditResults}"
-
-                    def pyflakesResults = sh(script: '. venv/bin/activate && python3 -m pyflakes . || true', returnStdout: true)
+        
+                    // Run Pyflakes for error detection
+                    def pyflakesResults = sh(script: 'venv/bin/python -m pyflakes .', returnStdout: true, returnStatus: true)
                     echo "Error detection results:\n${pyflakesResults}"
-
-                    // Auto-fix common issues
-                    sh '. venv/bin/activate && autopep8 --in-place --recursive .'
-                    sh '. venv/bin/activate && pylint --exit-zero $(find . -name "*.py")'
+        
+                    // Auto-fix code formatting issues with autopep8
+                    sh 'venv/bin/python -m autopep8 --in-place --recursive .'
+        
+                    // Run Pylint without breaking the pipeline
+                    sh 'find . -name "*.py" | xargs venv/bin/python -m pylint --exit-zero'
                 }
             }
         }
+
 
         stage('Replace Unoptimized Code') {
             steps {
