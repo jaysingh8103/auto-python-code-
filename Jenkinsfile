@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script{
                     echo 'Archiving optimized code...'
-                    archiveArtifacts artifacts: 'main.py', fingerprint: true
+                    archiveArtifacts artifacts: 'code1.py', fingerprint: true
                 }
             }
         }
