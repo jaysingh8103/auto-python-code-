@@ -12,3 +12,4 @@ def circle_area(radius):
 
 
 circle_area(5)
+circle_area(5)
