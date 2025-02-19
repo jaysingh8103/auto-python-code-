@@ -13,12 +13,22 @@ pipeline {
 
        stage('Clone Repository') {
             steps {
-                git branch: env.BRANCH_NAME, url: env.GITHUB_REPO, credentialsId: env.GITHUB_CREDENTIALS_ID
                 script {
-                    sh 'git clone -b ${BRANCH_NAME} ${GITHUB_REPO}'
+                    def repoDir = 'auto-python-code-'
+                    if (fileExists(repoDir)) {
+                        echo "Repository already exists. Pulling latest changes..."
+                        dir(repoDir) {
+                            sh 'git reset --hard'  // Reset any local changes
+                            sh 'git pull origin main'
+                        }
+                    } else {
+                        echo "Cloning repository..."
+                        sh "git clone -b main https://github.com/jaysingh8103/auto-python-code-.git"
+                    }
                 }
             }
         }
+
         
         stage('Set Up Virtual Environment') {
             steps {
