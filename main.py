@@ -11,5 +11,4 @@ def circle_area(radius):
         return area
 
 
-circle_area(5)
-circle_area(5)
+print (hemko"")
