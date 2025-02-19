@@ -1,14 +1,18 @@
-# main.py (Unoptimized)
-import math
+import os, sys, math  # Unused imports
 
+def add_numbers(x, y):
+    result = x + y
+    return result  # Inefficient return statement
 
-def circle_area(radius):
-    if radius < 0:
-        return 0
-    else:
-        area = math.pi * radius**2
-        print(f"Area is {area}")
-        return area
+def find_max(numbers):
+    max_num = -float("inf")
+    for num in numbers:
+        if num > max_num:
+            max_num = num
+    return max_num  # Can use built-in max()
 
+print(add_numbers(10, 20)) 
+print(find_max([1, 2, 3, 4, 5]))
 
-circle_area(6)
+def unused_function():
+    pass  # This function does nothing
