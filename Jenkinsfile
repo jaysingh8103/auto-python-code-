@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         GITHUB_REPO = 'https://github.com/jaysingh8103/auto-python-code-.git'
-        GITHUB_CREDENTIALS_ID = 'github_credentials'
+        GITHUB_CREDENTIALS_ID = ''
         BRANCH_NAME = 'main'
         GITHUB_USER ='jaysingh8103'
-        GITHUB_PASSWORD  = 'ITengineer12'
+        GITHUB_PASSWORD  = ''
     }
 
     stages {
