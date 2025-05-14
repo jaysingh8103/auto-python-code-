@@ -87,7 +87,7 @@ pipeline {
             steps {
                 echo 'Replacing unoptimized code with optimized code...'
                 withCredentials([usernamePassword(
-                    credentialsId: 'github_credentials',
+                    credentialsId: 'Github_Credentials',
                     usernameVariable: 'GITHUB_USER',
                     passwordVariable: 'GITHUB_PASSWORD'
                 )]) {
