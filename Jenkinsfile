@@ -94,7 +94,7 @@ pipeline {
                     sh '''
                         git config user.name "${GITHUB_USER}"
                         git config user.email "jaypals840@gmail.com"
-                        git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
+                        git checkout ${BRANCH_NAME} || git checkout  ${BRANCH_NAME}
                         git add .
                         git commit -m "Auto commit: optimized code"
                         git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/your-username/your-repo.git ${BRANCH_NAME}
