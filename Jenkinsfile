@@ -8,6 +8,9 @@ pipeline {
         GITHUB_USER ='jaysingh8103'
         GITHUB_PASSWORD  = 'ITengineer12'
     }
+    triggers {
+        githubPush() // ⬅️ This is the key line to trigger Jenkins on every GitHub push
+    }
 
     stages {
 
