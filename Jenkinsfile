@@ -83,25 +83,27 @@ pipeline {
         
 
 
-        stage('Replace Unoptimized Code') {
+       stage('Replace Unoptimized Code') {
             steps {
                 echo 'Replacing unoptimized code with optimized code...'
                 withCredentials([usernamePassword(
-                    credentialsId: 'Github_Credentials',
+                    credentialsId: 'github_credentials',
                     usernameVariable: 'GITHUB_USER',
                     passwordVariable: 'GITHUB_PASSWORD'
                 )]) {
                     sh '''
+                        set -x
                         git config user.name "${GITHUB_USER}"
                         git config user.email "jaypals840@gmail.com"
-                        git checkout ${BRANCH_NAME} || git checkout  ${BRANCH_NAME}
+                        git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
                         git add .
-                        git commit -m "Auto commit: optimized code"
-                        git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/your-username/your-repo.git ${BRANCH_NAME}
+                        git diff-index --quiet HEAD || git commit -m "Auto commit: optimized code"
+                        git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH_NAME}
                     '''
                 }
             }
         }
+
 
     }
 
