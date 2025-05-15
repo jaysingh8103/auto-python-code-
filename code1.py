@@ -1,5 +1,5 @@
 # Unoptimized code example
-
+import os
 
 def find_duplicates(nums):
     duplicates = []
