@@ -95,7 +95,7 @@ pipeline {
                         git config user.email "jaypals840@gmail.com"
                         git checkout ${BRANCH_NAME} || git checkout  ${BRANCH_NAME}
                         git add .
-                        git diff-index --quiet HEAD || git commit -m "Auto commit: optimized code"
+                        git commit -m "Auto commit: optimized code" || echo "Nothing to commit"
                         git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH_NAME}
                     '''
                 }
