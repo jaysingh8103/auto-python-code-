@@ -69,14 +69,20 @@ pipeline {
         stage('Static Analysis and Linting') {
             steps {
                 script {
-                    def lintResults = sh(script: '. venv/bin/activate && flake8 . --count --exit-zero --max-complexity=10 --statistics', returnStdout: true)
-                    echo "Linting results:\n${lintResults}"
-
-                    def pylintResults = sh(script: '. venv/bin/activate && pylint $(find . -name "*.py") || true', returnStdout: true)
-                    echo "Pylint results:\n${pylintResults}"
+                    echo 'Running black formatter...'
+                    def result = sh(script: 'black . --check --diff || true', returnStatus: true)
+                    if (result != 0) {
+                        echo '⚠️ Some files could not be formatted. Please check syntax issues manually.'
+                        
+                        error("Static analysis failed due to unformattable files.")
+                    }
+        
+                    echo 'Running pylint...'
+                    sh 'pylint **/*.py || true'
                 }
             }
         }
+
 
         
 
@@ -86,8 +92,8 @@ pipeline {
                 echo 'Replacing unoptimized code with optimized code...'
                 withCredentials([usernamePassword(
                     credentialsId: 'Github_Credentials',
-                    usernameVariable: 'GITHUB_USER',
-                    passwordVariable: 'GITHUB_PASSWORD'
+                    usernameVariable: 'jaysingh8103',
+                    passwordVariable: 'ITengineer12'
                 )]) {
                     sh '''
                         set -x
