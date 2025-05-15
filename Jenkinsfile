@@ -8,9 +8,7 @@ pipeline {
         GITHUB_USER ='jaysingh8103'
         GITHUB_PASSWORD  = 'ITengineer12'
     }
-    triggers {
-        githubPush() // ⬅️ This is the key line to trigger Jenkins on every GitHub push
-    }
+
 
     stages {
 
@@ -95,7 +93,7 @@ pipeline {
                         set -x
                         git config user.name "${GITHUB_USER}"
                         git config user.email "jaypals840@gmail.com"
-                        git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
+                        git checkout ${BRANCH_NAME} || git checkout  ${BRANCH_NAME}
                         git add .
                         git diff-index --quiet HEAD || git commit -m "Auto commit: optimized code"
                         git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH_NAME}
