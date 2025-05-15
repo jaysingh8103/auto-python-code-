@@ -90,21 +90,21 @@ pipeline {
        stage('Replace Unoptimized Code') {
             steps {
                 echo 'Replacing unoptimized code with optimized code...'
-                withCredentials([usernamePassword(
-                    credentialsId: 'Github_Credentials',
-                    usernameVariable: 'jaysingh8103',
-                    passwordVariable: 'ITengineer12'
-                )]) {
-                    sh '''
-                        set -x
-                        git config user.name "${GITHUB_USER}"
-                        git config user.email "jaypals840@gmail.com"
-                        git checkout ${BRANCH_NAME} || git checkout  ${BRANCH_NAME}
-                        git add .
-                        git commit -m "Auto commit: optimized code" || echo "Nothing to commit"
-                        git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH_NAME}
-                    '''
-                }
+                // withCredentials([usernamePassword(
+                //     credentialsId: 'Github_Credentials',
+                //     usernameVariable: 'jaysingh8103',
+                //     passwordVariable: 'ITengineer12'
+                // )]) {
+                //     sh '''
+                //         set -x
+                //         git config user.name "${GITHUB_USER}"
+                //         git config user.email "jaypals840@gmail.com"
+                //         git checkout ${BRANCH_NAME} || git checkout  ${BRANCH_NAME}
+                //         git add .
+                //         git commit -m "Auto commit: optimized code" || echo "Nothing to commit"
+                //         git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/jaysingh8103/auto-python-code-.git ${BRANCH_NAME}
+                //     '''
+                // }
             }
         }
 
