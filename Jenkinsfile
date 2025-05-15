@@ -52,18 +52,18 @@ pipeline {
             steps {
                 script {
                     sh '. venv/bin/activate && pip install --upgrade pip'
-                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8 bandit pyflakes ast'
+                    sh '. venv/bin/activate && pip install black autopep8 pylint flake8 bandit pyflakes'
                 }
             }
         }
-        stage('Fix Syntax Errors') {
-            steps {
-                script {
-                    echo 'Fixing syntax errors in Python files...'
-                    sh '. venv/bin/activate && python3 fix_syntax_errors.py'
-                }
-            }
-        }
+        // stage('Fix Syntax Errors') {
+        //     steps {
+        //         script {
+        //             echo 'Fixing syntax errors in Python files...'
+        //             sh '. venv/bin/activate && python3 fix_syntax_errors.py'
+        //         }
+        //     }
+        // }
 
         stage('Optimize Code') {
             steps {
