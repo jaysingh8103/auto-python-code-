@@ -1,7 +1,7 @@
-def greet(name)
-    if name = "Alice":
-    print("Hello, " + name)
-  else
-    print("Hi there" + name)
+# def greet(name)
+#     if name = "Alice":
+#     print("Hello, " + name)
+#   else
+#     print("Hi there" + name)
 
-greet("Bob"
+# greet("Bob"
